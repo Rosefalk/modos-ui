@@ -1,0 +1,26 @@
+.icon{
+    color: #fff;
+    text-shadow: 2px 2px #000;
+    text-align: center;
+    margin: 20px;
+    cursor: pointer;
+    width: 10%;
+    min-width: 100px;
+}
+.icon img{
+    width: 30%;
+    min-width: 50px;
+    margin: auto;
+    display: block;
+}
+.icon p{
+    box-sizing: border-box;
+    margin:5px;
+    padding: 2px;
+    word-wrap: break-word;
+}
+
+.icon.selected p{
+    border: 1px dotted #aaa;
+    background-color: rgba(255,255,255,0.1);
+}

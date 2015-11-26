@@ -1,0 +1,22 @@
+#wallpaper-stage{
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    position: absolute;
+}
+#wallpaper-one,#wallpaper-two{
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    position: absolute;
+    background-color: transparent;
+    background-repeat: none;
+    background-size: cover;
+    z-index:0;
+}
+#wallpaper-two{
+    opacity: 0;
+    z-index: 1;
+}

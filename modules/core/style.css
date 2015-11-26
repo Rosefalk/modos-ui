@@ -1,0 +1,12 @@
+
+body>#content{
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+    margin: 175px 10px 10px 10px;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    opacity: 0;
+}

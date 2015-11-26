@@ -1,0 +1,15 @@
+.sticky{
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+    white-space: pre-line;
+}
+#stickyButtonCreate{
+    position: absolute;
+    z-index: 2;
+    background-color #fff;
+    border: 1px solid #555;
+    color: #555;
+    cursor: pointer;
+}

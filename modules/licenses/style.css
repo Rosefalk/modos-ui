@@ -1,0 +1,11 @@
+#license-button{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    background-color #fff;
+    border: 1px solid #555;
+    color: #555;
+    opacity: 0.5;
+    cursor: pointer;
+}

@@ -1,0 +1,21 @@
+.crochet_tension_container{
+    text-align: left;
+    font-size: 14px;
+}
+.crochet_tension_container .spacer{
+    height: 10px;
+}
+.crochet_tension_container tr{
+    line-height:30px;
+}
+.crochet_tension_container table{
+    width: 100%;
+}
+.crochet_tension_container input{
+    text-align: right;
+    height: 16px;
+    width: 100px;
+}
+.crochet_tension_container input[name=result]{
+    font-size: 11px;
+}

@@ -1,0 +1,25 @@
+
+
+#clock-stage{
+    position:absolute;
+    width: 400px;
+    top: 50px;
+    left: 50%;
+    margin-left: -200px;
+    color: white;
+    font-size: 100px;
+    text-shadow: 2px 2px #000;
+    font-family: 'Cutive Mono', Arial, sans-serif;
+    text-align: center;
+    z-index: 2;
+    cursor: default;
+}
+
+#clock{
+    margin: 0px;
+    line-height: 70px;
+}
+#clock-textbox{
+    margin: 10px 0;
+    font-size: 20px;
+}
