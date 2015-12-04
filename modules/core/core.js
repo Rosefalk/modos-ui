@@ -39,6 +39,11 @@ var core = {
             name: "crochet_tension_calculator",
             location:"crochet_tension_calculator",
             scripts:["crochet_tension_calculator.js"]
+        },
+        burger_menu:{
+            name: "burger_menu",
+            location:"burger_menu",
+            scripts:["burger_menu.js"]
         }
     },
     util: {
