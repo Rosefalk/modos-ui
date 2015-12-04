@@ -16,8 +16,14 @@
 }
 
 .burger-menu-icon{
+    /* style 1*//*
+    position: fixed;
+    left: 0px;
+    *//*-------------*/
+    /*style 2*/
     position: absolute;
     right: -60px;
+    /*--------------*/
     top: 0px;
     width: 60px;
     height: 60px;
