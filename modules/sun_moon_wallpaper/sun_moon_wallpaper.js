@@ -10,7 +10,7 @@ core.modules.sun_moon_wallpaper.instance = {
         var self = this;
 
 
-
+        //not a math wizard
         var height = (self.moduleData.$star.height()/2)
         var width = (self.moduleData.$star.width()/2)
         var radiusW = window.innerWidth/2 -width
