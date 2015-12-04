@@ -1,0 +1,26 @@
+#searchbar{
+    position: absolute;
+    width: 400px;
+    top: 158px;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+    z-index: 2;
+    cursor: default;
+}
+
+#searchbar input{
+    font-family: 'Cutive Mono', Arial, sans-serif;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 300px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px #000;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#searchbar input:focus{
+    box-shadow: 0px 0px 5px #fff;
+}

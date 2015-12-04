@@ -25,6 +25,16 @@ var core = {
             location:"wallpapers",
             scripts:["wallpapers.js"]
         },
+        searchbar:{
+            name: "searchbar",
+            location:"searchbar",
+            scripts:["searchbar.js"]
+        },
+        lydia:{
+            name: "lydia",
+            location:"lydia",
+            scripts:["lydia.js"]
+        },
         clock:{
             name: "clock",
             location:"clock",
@@ -44,7 +54,7 @@ var core = {
             name: "burger_menu",
             location:"burger_menu",
             scripts:["burger_menu.js"]
-        }/*,
+        },/*
         sun_moon_wallpaper:{
             name: "sun_moon_wallpaper",
             location:"sun_moon_wallpaper",

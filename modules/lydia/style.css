@@ -1,0 +1,34 @@
+#lydia{
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+    height: 0px;
+    overflow: hidden;
+}
+#console,#query{
+    background-color: rgba(0,0,0,0.7);
+    border: 1px solid #0C0;
+    color: #0C0;
+    padding: 10px;
+    box-sizing: border-box;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAE0lEQVQImWNgOMcghYGxA4pUAgDN8w2ZtGfV5wAAAABJRU5ErkJggg==);
+}
+
+#console{
+    width: 100%;
+    height: calc(100% - 48px);
+    resize: none;
+    border-bottom: 0px;
+}
+
+#query{
+    width: 100%;
+    height: 46px;
+    display:block;
+}
+.blink
+{
+	width: 5px;
+	height: 14px;
+	background-color: #0C0;
+}
