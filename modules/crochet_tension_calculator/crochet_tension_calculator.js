@@ -34,12 +34,7 @@ core.modules.crochet_tension_calculator.instance = {
                     $(data).dialog({title:self.moduleData.iconLabel});
                     var $container = $(".crochet_tension_container:last");
 
-                    var clickType = "click";
-                    if(core.moduleData.isMobile){
-                        clickType = "touchstart";
-                    }
-
-                    $container.find("button").on(clickType,function(){
+                    $container.find("button").on("click touchstart",function(){
                         self.calculate($container);
                     })
                 };

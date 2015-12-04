@@ -17,15 +17,23 @@ core.modules.burger_menu.instance = {
         }
         else if(json.index == undefined || json.index=="last"){
             self.moduleData.$list.append($listItem);
+            $listItem = self.moduleData.$list.children().last();
         }else{
             var indx = json.index - 1;
             console.log(indx)
             if(indx==-1){
                 indx=0;
                 self.moduleData.$list.children("li").eq(indx).before($listItem);
+                $listItem = self.moduleData.$list.children().first();
             }else{
                 self.moduleData.$list.children("li").eq(indx).after($listItem);
+                $listItem = self.moduleData.$list.children().eq(indx+1);
             }
+        }
+        if(json.func != undefined){
+            $listItem.on("click touchstart",function(){
+                json.func();
+            })
         }
 
     },
@@ -80,12 +88,7 @@ core.modules.burger_menu.instance = {
                 self.moduleData.$list = $container.find(".burger-menu-list");
                 $container.css("left",-$container.width())
 
-                var clickType = "click";
-                if(core.moduleData.isMobile){
-                    clickType = "touchstart";
-                }
-
-                $container.find(".burger-menu-icon").on(clickType,function(){
+                $container.find(".burger-menu-icon").on("click touchstart",function(){
                     self.flipBurger();
                 });
             }
