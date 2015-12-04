@@ -1,0 +1,12 @@
+#universe{
+    position: absolute;
+    z-index:2;
+}
+
+.star{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 100px;
+}

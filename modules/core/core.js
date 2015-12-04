@@ -44,7 +44,12 @@ var core = {
             name: "burger_menu",
             location:"burger_menu",
             scripts:["burger_menu.js"]
-        }
+        }/*,
+        sun_moon_wallpaper:{
+            name: "sun_moon_wallpaper",
+            location:"sun_moon_wallpaper",
+            scripts:["sun_moon_wallpaper.js"]
+        }*/
     },
     util: {
         loadCSS: function(location,name){
