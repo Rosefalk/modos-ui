@@ -33,3 +33,9 @@
     height: 100px;
     background-image: url("moon.png");
 }
+
+.landscape{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
