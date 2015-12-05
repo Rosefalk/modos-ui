@@ -12,9 +12,16 @@ core.modules.lydia.instance = {
         textRepeater: undefined,
         queueData  : [],
         commandList : [{command:"help",func: function(){
-            var self = this;
             core.modules.lydia.instance.writeText("All loaded modules are listed in core.modules.instance",true)
-            core.modules.lydia.instance.writeText("no other functionality has been added to me at this point",true)
+
+            var commands = "";
+            $(core.modules.lydia.instance.moduleData.commandList).each(function(i,v){
+                if(commands!=""){
+                    commands+=", ";
+                }
+                commands+=v.command;
+            })
+            core.modules.lydia.instance.writeText("commands: "+commands,true)
         }},
         {command:"forest",func: function(){
             var self = this;
