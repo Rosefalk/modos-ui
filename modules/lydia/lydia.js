@@ -5,13 +5,16 @@ core.modules.lydia.instance = {
         location    : "modules/lydia/",
         lydiaVersion: 0.1,
         $blink      : undefined,
+        $textField  : undefined,
         commandKey  : 112,
         lydiaSpeed  : 15,
         open        : false,
+        textRepeater: undefined,
+        queueData  : [],
         commandList : [{command:"help",func: function(){
             var self = this;
-            core.modules.lydia.instance.writeText(
-                "This is helpful help text that helps!",true)
+            core.modules.lydia.instance.writeText("All loaded modules are listed in core.modules.instance",true)
+            core.modules.lydia.instance.writeText("no other functionality has been added to me at this point",true)
         }},
         {command:"forest",func: function(){
             var self = this;
@@ -29,6 +32,38 @@ core.modules.lydia.instance = {
             }})
         }})
 	},
+    writeQueue: function(){
+        var self = this;
+        if(self.moduleData.textRepeater===undefined && self.moduleData.queueData.length>0){
+            self.moduleData.$textfield = $(document.createElement("span"));
+            self.moduleData.$blink.before(self.moduleData.$textfield);
+            self.moduleData.$blink.css("display","none");
+            var counter=0;
+            self.moduleData.textRepeater = setInterval(function(){
+                self.textRelay(counter)
+                counter++;
+            }, self.moduleData.lydiaSpeed);
+        }
+    },
+    textRelay: function(counter){
+        var self = this;
+        var data = self.moduleData.queueData[0];
+		if(counter <= data.length)
+		{
+			self.moduleData.$textfield.append(data[counter]);
+			counter++;
+		}
+		else
+		{
+			self.moduleData.$blink.before("<br />");
+            self.moduleData.$blink.css("display","block");
+			clearInterval(self.moduleData.textRepeater);
+            self.moduleData.textRepeater=undefined;
+            self.moduleData.queueData.shift();
+            self.writeQueue();
+			return false;
+		}
+    },
 	writeText: function(string, ignoreCommands)
 	{
         var self = this;
@@ -53,27 +88,8 @@ core.modules.lydia.instance = {
             }
         }
 
-		var counter = 0;
-
-        var textfield = $(document.createElement("span"));
-        self.moduleData.$blink.before(textfield);
-        self.moduleData.$blink.css("display","none");
-		var id = setInterval(function ()
-		{
-			if(counter <= data.length)
-			{
-				textfield.append(data[counter]);
-				counter++;
-			}
-			else
-			{
-				self.moduleData.$blink.before("<br />");
-                self.moduleData.$blink.css("display","block");
-
-				clearInterval(id);
-				return false;
-			}
-		}, self.moduleData.lydiaSpeed);
+        self.moduleData.queueData.push(data)
+        self.writeQueue();
 	},
     init: function(){
         var self = this;
