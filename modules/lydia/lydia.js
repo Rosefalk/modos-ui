@@ -4,6 +4,7 @@ core.modules.lydia.instance = {
     moduleData : {
         location    : "modules/lydia/",
         lydiaVersion: 0.1,
+        $console    : undefined,
         $blink      : undefined,
         $textField  : undefined,
         commandKey  : 112,
@@ -58,6 +59,7 @@ core.modules.lydia.instance = {
 		if(counter <= data.length)
 		{
 			self.moduleData.$textfield.append(data[counter]);
+            self.moduleData.$console.scrollTop(function() { return this.scrollHeight; });
 			counter++;
 		}
 		else
@@ -109,6 +111,7 @@ core.modules.lydia.instance = {
           success: function(data){
               core.moduleData.$topUILayer.append(data)
               self.moduleData.$lydia = $("#lydia")
+              self.moduleData.$console = self.moduleData.$lydia.find("#console");
               self.moduleData.$blink = self.moduleData.$lydia.find(".blink");
               self.blink(self.moduleData.$blink);
 
