@@ -20,7 +20,7 @@ core.modules.sun_moon_wallpaper.instance = {
         else if(now >=0 && now <= 5){
             nightOpacity = (5-now)/5;
         }
-        nightOpacity
+
         self.moduleData.$nightImg.css("opacity",nightOpacity)
     },
     updateOrbit: function(object,translation,forceTime){

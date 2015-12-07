@@ -4,6 +4,7 @@ var core = {
     moduleData:{
         location            : "modules/core/",
         moduleLocation      : "modules",
+        moduleNameArray     : [],
         $contentContainer   : undefined,
         $topUILayer         : undefined,
         isMobile            : undefined
@@ -54,7 +55,7 @@ var core = {
             name: "burger_menu",
             location:"burger_menu",
             scripts:["burger_menu.js"]
-        },/*
+        }/*,
         sun_moon_wallpaper:{
             name: "sun_moon_wallpaper",
             location:"sun_moon_wallpaper",
@@ -78,6 +79,46 @@ var core = {
                 if (jQuery.inArray(el, arr2) == -1) diff.push(el);
             });
             return diff;
+        },
+        //loading a single module is slightly different and inefficient
+        loadModule: function(module){
+            var self=this;
+            console.info("loading module: "+module.name)
+            //create shim object with correct name
+            var shim = ($.parseJSON('{ "'+module.name+'": "test" }'))
+            //inject the module into the correctly named object
+                shim[Object.keys(shim)[0]]=module;
+            //add it to the module library
+            $.extend( core.modules, shim );
+            //make sure to also add it to the module name array for consistency
+            core.moduleData.moduleNameArray.push(module.name);
+            //PS:if it's stupid and it works it aint stupid
+            var url = core.moduleData.moduleLocation+"/"+module.location+"/"+module.scripts;
+            $.ajax({
+                url: url,
+                dataType: "script",
+                success: function(){
+                    var dependencies = module.instance.moduleData.dependencies;
+                    var result = false;
+                    var diff;
+                    if(dependencies==undefined){
+                        result=true;
+                    }else{
+                        diff = core.util.arrayReturnDiff(dependencies,self.moduleData.moduleNameArray);
+                        result = (diff.length==0)?true:false;
+                    }
+                    if(result){
+                        if($.type(module.instance.init)=="function"){
+                            module.instance.init();
+                        }
+                    }else{
+                        console.warn(module.name+"is missing the following dependencies: "+diff+", Status: inactive")
+                    }
+                },
+                error: function(jqXHR,error){
+                  console.log("Error Loading: "+url+" : "+error+", code:"+jqXHR.status)
+                }
+            });
         }
     },
     init: function(){
@@ -94,7 +135,7 @@ var core = {
         //moduleNameArray will only store the names of modules, it is true that initArray
         //has the data, but I think it's faster to have an extra array of data than to
         //loop through initArray and make it again later
-        var moduleNameArray = []
+        self.moduleData.moduleNameArray = []
         //counter will keep track of index, when $.each is used on an object it will
         //change parameters from (index, value) to (key,value) pair.
         var counter = 0;
@@ -103,6 +144,7 @@ var core = {
         //we need to delay runtime (init) of each module until they're all loaded and ready
         //that way we won't be bothered with dependencies needing each other.
         $.each(core.modules,function(i,v){
+            console.log(v)
             //remember: key, value pair, not index
             var url = core.moduleData.moduleLocation+"/"+v.location+"/"+v.scripts;
             $.ajax({
@@ -114,7 +156,7 @@ var core = {
                     //storing key/value pair in array
                     initArray.push([i,v]);
                     //just the name
-                    moduleNameArray.push(i);
+                    self.moduleData.moduleNameArray.push(i);
                 }
                 //we're resolving all instances when all modules are loaded
                 //that way we can roll through all module's dependencies
@@ -126,7 +168,7 @@ var core = {
                         if(dependencies==undefined){
                             result=true;
                         }else{
-                            diff = self.util.arrayReturnDiff(dependencies,moduleNameArray);
+                            diff = self.util.arrayReturnDiff(dependencies,self.moduleData.moduleNameArray);
                             result = (diff.length==0)?true:false;
                         }
                         if(result){
@@ -139,7 +181,7 @@ var core = {
                 }
               },
               error: function(jqXHR,error){
-                  console.log("Error Loading: "+url+" : "+error)
+                  console.log("Error Loading: "+url+" : "+error+", code:"+jqXHR.status)
               }
             });
         })
