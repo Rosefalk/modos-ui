@@ -72,7 +72,8 @@ core.modules.burger_menu.instance = {
     },
     init: function(){
         var self = this;
-        if(self.moduleData.onlyLoadIfMobile && core.moduleData.isMobile){
+        if(self.moduleData.onlyLoadIfMobile && !core.moduleData.isMobile){
+            console.log("!")
             return;
         }
         //load Dependency: css
