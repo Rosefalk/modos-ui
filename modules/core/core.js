@@ -144,7 +144,6 @@ var core = {
         //we need to delay runtime (init) of each module until they're all loaded and ready
         //that way we won't be bothered with dependencies needing each other.
         $.each(core.modules,function(i,v){
-            console.log(v)
             //remember: key, value pair, not index
             var url = core.moduleData.moduleLocation+"/"+v.location+"/"+v.scripts;
             $.ajax({
