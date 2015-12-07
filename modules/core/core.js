@@ -98,16 +98,7 @@ var core = {
                 url: url,
                 dataType: "script",
                 success: function(){
-                    var dependencies = module.instance.moduleData.dependencies;
-                    var result = false;
-                    var diff;
-                    if(dependencies==undefined){
-                        result=true;
-                    }else{
-                        diff = core.util.arrayReturnDiff(dependencies,self.moduleData.moduleNameArray);
-                        result = (diff.length==0)?true:false;
-                    }
-                    if(result){
+                    if(core.util.dependencyCheck(module)){
                         if($.type(module.instance.init)=="function"){
                             module.instance.init();
                         }
@@ -119,6 +110,18 @@ var core = {
                   console.log("Error Loading: "+url+" : "+error+", code:"+jqXHR.status)
                 }
             });
+        },
+        dependencyCheck:function(module){
+            var self = this;
+            var dependencies = module.instance.moduleData.dependencies;
+            var diff;
+            if(dependencies==undefined){
+                result=true;
+            }else{
+                diff = core.util.arrayReturnDiff(dependencies,core.moduleData.moduleNameArray);
+                result = (diff.length==0)?true:false;
+            }
+            return result;
         }
     },
     init: function(){
@@ -162,15 +165,8 @@ var core = {
                 if(counter == moduleLength){
                     $(initArray).each(function(i,v){
                         var result = false;
-                        var dependencies = v[1].instance.moduleData.dependencies;
-                        var diff;
-                        if(dependencies==undefined){
-                            result=true;
-                        }else{
-                            diff = self.util.arrayReturnDiff(dependencies,self.moduleData.moduleNameArray);
-                            result = (diff.length==0)?true:false;
-                        }
-                        if(result){
+
+                        if(core.util.dependencyCheck(v[1])){
                             v[1].instance.init();
                         }else{
                             console.warn(v[0]+"is missing the following dependencies: "+diff+", Status: inactive")
