@@ -3,6 +3,8 @@
 core.modules.burger_menu.instance = {
     moduleData : {
         location : "modules/burger_menu/",
+        push: true,
+        pushContainer: core.moduleData.$topUILayer,
         menuOpen: false,
         onlyLoadIfMobile: false,
         $container: undefined,
@@ -62,11 +64,19 @@ core.modules.burger_menu.instance = {
         self.moduleData.menuOpen = status;
 
         if(self.moduleData.menuOpen){
-            TweenMax.to(self.moduleData.$container,0.4,{left:0});
+            if(self.moduleData.push){
+                TweenMax.to(self.moduleData.pushContainer,0.4,{left:self.moduleData.$container.width()});
+            }else{
+                TweenMax.to(self.moduleData.$container,0.4,{left:0});
+            }
         }else{
-            TweenMax.to(self.moduleData.$container,0.4,{
-                left:-self.moduleData.$container.width()
-            });
+            if(self.moduleData.push){
+                TweenMax.to(self.moduleData.pushContainer,0.4,{left:0});
+            }else{
+                TweenMax.to(self.moduleData.$container,0.4,{
+                    left:-self.moduleData.$container.width()
+                });
+            }
         }
 
     },

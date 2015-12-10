@@ -6,11 +6,11 @@
     position: absolute;
 }
 #wallpaper-one,#wallpaper-two{
+    position: absolute;
     bottom:0;
     top:0;
     left:0;
     right:0;
-    position: absolute;
     background-color: transparent;
     background-repeat: none;
     background-size: cover;

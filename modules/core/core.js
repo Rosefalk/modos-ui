@@ -131,8 +131,8 @@ var core = {
         //what interaction type are we expecting?
         self.moduleData.isMobile = self.util.isMobile();
         //set render targets
-        core.moduleData.$contentContainer = $("body").children("#content");
-        core.moduleData.$topUILayer = $("body");
+        core.moduleData.$topUILayer = $("#modos-wrapper");
+        core.moduleData.$contentContainer = $("#content");
         //initArray will delay execution of init functions until all modules are loaded
         var initArray = [];
         //moduleNameArray will only store the names of modules, it is true that initArray
