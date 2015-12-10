@@ -12,7 +12,7 @@
     left:0;
     right:0;
     background-color: transparent;
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-size: cover;
     z-index:0;
 }
